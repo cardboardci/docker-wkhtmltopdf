@@ -1,3 +1,5 @@
-FROM hadolint/hadolint:v1.15.0 AS official 
 FROM alpine:3.8
-COPY --from=official /bin/hadolint /bin/hadolint
+COPY rootfs/ /
+
+COPY provision/install.sh /tmp/install.sh
+RUN sh /tmp/install.sh && rm -f /tmp/install.sh
