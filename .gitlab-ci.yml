@@ -13,7 +13,7 @@ stages:
 
 variables:
   HUB_NAMESPACE: cardboardci
-  HUB_PROJECT: hadolint
+  HUB_PROJECT: wkhtmltopdf
 
 ##
 ## Validate
