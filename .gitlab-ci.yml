@@ -14,27 +14,27 @@ stages:
 ##
 ## Validate
 ##
-# shellcheck:
-#   stage: "Validate"
-#   image: cardboardci/shellcheck
-#   script:
-#     - shellcheck provision/*.sh
+shellcheck:
+  stage: "Validate"
+  image: cardboardci/shellcheck
+  script:
+    - shellcheck provision/*.sh
 
-# hadolint:
-#   stage: "Validate"
-#   image: cardboardci/hadolint
-#   script:
-#     - hadolint Dockerfile*
+hadolint:
+  stage: "Validate"
+  image: cardboardci/hadolint
+  script:
+    - hadolint Dockerfile*
 
-# ##
-# ## Build
-# ##
-# build:
-#   stage: "Build"
-#   script:
-#     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-#     - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
-#     - docker push "$CI_REGISTRY_IMAGE"
+##
+## Build
+##
+build:
+  stage: "Build"
+  script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG" .
+    - docker push "$CI_REGISTRY_IMAGE"
 
 ##
 ## Test
@@ -71,12 +71,11 @@ docker.hub:
   script:
     - source deploy/hub.docker.config
     - cat deploy/hub.docker.config
-    - echo "docker.io/$HUB_NAMESPACE/$HUB_PROJECT:edge"
-    # - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
-    # - docker pull "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
-    # - docker tag "docker.io/$HUB_NAMESPACE/$HUB_PROJECT:edge"
-    # - docker login -u "$HUB_REGISTRY_USER" -p "$HUB_REGISTRY_PASSWORD"
-    # - docker push "docker.io/$HUB_NAMESPACE/$HUB_PROJECT:edge"
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+    - docker pull "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG"
+    - docker tag "docker.io/$HUB_NAMESPACE/$HUB_PROJECT:edge"
+    - docker login -u "$HUB_REGISTRY_USER" -p "$HUB_REGISTRY_PASSWORD"
+    - docker push "docker.io/$HUB_NAMESPACE/$HUB_PROJECT:edge"
   only:
     - master
 # quay.io:
