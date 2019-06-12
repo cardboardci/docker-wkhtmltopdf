@@ -1,3 +1,2 @@
 #!/bin/sh
-set -ex
-cd /tmp/
+echo "Hello World"
