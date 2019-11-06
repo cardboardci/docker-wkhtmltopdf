@@ -1,8 +1,0 @@
----
-name: github
-provider: github.com
-repository: docker-wkhtmltopdf
-url: https://github.com/cardboardci/docker-wkhtmltopdf
-clone:
-  ssh: git@github.com:cardboardci/docker-wkhtmltopdf.git
-  https: https://github.com/cardboardci/docker-wkhtmltopdf.git
