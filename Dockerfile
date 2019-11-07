@@ -1,7 +1,7 @@
 FROM cardboardci/ci-core:disco
 USER root
 
-ARG VERSION=0.12.2
+ARG VERSION=0.12.5
 
 COPY provision/pkglist /cardboardci/pkglist
 RUN apt-get update \
@@ -9,8 +9,9 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-ADD http://download.gna.org/wkhtmltopdf/0.12/0.12.2/wkhtmltox-0.12.2_linux-jessie-amd64.deb /tmp/wkhtmltox-0.12.2_linux-jessie-amd64.deb
-RUN dpkg -i w/tmp/wkhtmltox-0.12.2_linux-jessie-amd64.deb
+RUN curl -SL  "https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/${VERSION}/wkhtmltox-${VERSION}_linux-generic-amd64.tar.xz" | tar -xJ \
+    && cp wkhtmltox/bin/* /usr/bin/ \
+    && rm -rf wkhtmltox
 
 USER cardboardci
 
