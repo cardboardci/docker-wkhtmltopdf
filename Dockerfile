@@ -1,7 +1,18 @@
-FROM alpine:3.10.3
-COPY rootfs/ /
+FROM cardboardci/ci-core:disco
+USER root
 
-RUN echo "Marked as WIP from previous project (jrbeverylabs/dockerfiles/docker-wkhtmltopdf)"
+ARG VERSION=0.12.2
+
+COPY provision/pkglist /cardboardci/pkglist
+RUN apt-get update \
+    && xargs -a /cardboardci/pkglist apt-get install --no-install-recommends -y \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+ADD http://download.gna.org/wkhtmltopdf/0.12/0.12.2/wkhtmltox-0.12.2_linux-jessie-amd64.deb /tmp/wkhtmltox-0.12.2_linux-jessie-amd64.deb
+RUN dpkg -i w/tmp/wkhtmltox-0.12.2_linux-jessie-amd64.deb
+
+USER cardboardci
 
 ##
 ## Image Metadata

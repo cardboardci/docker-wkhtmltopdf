@@ -1,0 +1,9 @@
+build-essential
+wget
+fontconfig
+libjpeg62-turbo
+libssl-dev
+libxext6
+libxrender-dev
+xfonts-base
+xfonts-75dpi
