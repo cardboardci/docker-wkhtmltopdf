@@ -1,7 +1,19 @@
-FROM alpine:3.10.3
-COPY rootfs/ /
+FROM cardboardci/ci-core:disco
+USER root
 
-RUN echo "Marked as WIP from previous project (jrbeverylabs/dockerfiles/docker-wkhtmltopdf)"
+ARG VERSION=0.12.5
+
+COPY provision/pkglist /cardboardci/pkglist
+RUN apt-get update \
+    && xargs -a /cardboardci/pkglist apt-get install --no-install-recommends -y \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN curl -SL  "https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/${VERSION}/wkhtmltox-${VERSION}_linux-generic-amd64.tar.xz" | tar -xJ \
+    && cp wkhtmltox/bin/* /usr/bin/ \
+    && rm -rf wkhtmltox
+
+USER cardboardci
 
 ##
 ## Image Metadata

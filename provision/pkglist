@@ -1,0 +1,13 @@
+openssl
+build-essential
+curl
+xz-utils
+ca-certificates
+xfonts-100dpi
+xfonts-75dpi
+xfonts-base
+fonts-roboto
+fonts-inconsolata
+ttf-mscorefonts-installer
+fontconfig
+xorg
