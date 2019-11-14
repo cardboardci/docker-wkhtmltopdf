@@ -1,8 +1,0 @@
-{
-  "name": "docker-wkhtmltopdf",
-  "tagline": "wkhtmltopdf is a command line tools to render HTML into PDF.",
-  "license": {
-    "name": "MIT"
-  },
-  "tags": ["docker", "html", "pdf"]
-}
