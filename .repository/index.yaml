@@ -1,0 +1,18 @@
+slug: docker-wkhtmltopdf
+description: wkhtmltopdf is a command line tools to render HTML into PDF.
+project: cardboardci
+namespace: docker
+status: archived
+icon: icon.svg
+license:
+  type: MIT
+  content: Jonathan Beverly <jrbeverly>
+  year: 2019
+topics: |-
+  [
+    "dockerfile",
+    "html",
+    "pdf",
+    "conversion",
+    "pdf-document-processor"
+  ]
